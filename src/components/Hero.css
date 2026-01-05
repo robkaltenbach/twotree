@@ -1,0 +1,235 @@
+.hero {
+    background: var(--gradient-hero);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 5rem;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    margin-bottom: -0.2rem;
+    /* Tucked closer */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1;
+}
+
+.stat-item p {
+    font-size: 0.8rem;
+    /* Slightly smaller for tighter tuck */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+    opacity: 0.8;
+}
+
+.stealth-link {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.stealth-link:hover {
+    transform: translateY(-4px);
+}
+
+.stealth-link:hover h3 {
+    color: var(--color-primary);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+/* --- Hero Visual & Card Animation --- */
+
+.hero-visual {
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.process-card-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.process-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Deep Purple Glass Style */
+    background: rgba(46, 16, 101, 0.6);
+    /* Darker purple base */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    /* Soft purple border */
+    padding: 2.5rem;
+    border-radius: 24px;
+    /* Slightly larger rounded corners */
+    color: var(--color-text-light);
+    width: 380px;
+    /* Landscape aspect ratio */
+    /* text-align: left; Remove center align for more character? Keeping center for now but can shift */
+    text-align: left;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(139, 92, 246, 0.1) inset;
+    /* Inner glow */
+
+    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity: 0;
+}
+
+/* STATE: ACTIVE (Center, Floating, Slightly Crooked) */
+.process-card.active {
+    transform: translate(-50%, -50%) rotate(-3deg) scale(1);
+    /* Crooked tilt */
+    opacity: 1;
+    z-index: 10;
+}
+
+/* STATE: PREV (Exiting - Fly Up and Rotate Out) */
+.process-card.prev {
+    transform: translate(-50%, -150%) rotate(-15deg) scale(0.9);
+    opacity: 0;
+    z-index: 5;
+}
+
+/* STATE: NEXT (Queue - Waiting at bottom right) */
+.process-card.next {
+    transform: translate(-40%, 40%) rotate(10deg) scale(0.9);
+    opacity: 0;
+    /* Make it invisible until it enters, or keep low opacity? User said 'queue' */
+    opacity: 0.0;
+    /* Let's hide it completely and just pop in/slide, or keep subtle? User liked the queue concept. */
+    /* Let's try visible but deep */
+    opacity: 0.4;
+    z-index: 4;
+}
+
+/* STATE: HIDDEN */
+.process-card.hidden {
+    transform: translate(-40%, 100%) rotate(10deg) scale(0.8);
+    opacity: 0;
+    z-index: 0;
+    transition: none;
+}
+
+.process-icon-wrapper {
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+}
+
+.process-icon {
+    color: white;
+    width: 32px;
+    /* Lucide icon size */
+    height: 32px;
+}
+
+.process-step-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #D8B4FE;
+    /* Lighter purple text */
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.process-card h4 {
+    font-size: 1.5rem;
+    /* Adjusted for landscape header balance */
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.process-card p {
+    font-size: 1rem;
+    color: #E9D5FF;
+    /* Very light purple/grey */
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .process-card {
+        width: 300px;
+        /* Smaller for mobile */
+        padding: 2rem;
+        text-align: center;
+        /* Center on mobile usually looks better */
+    }
+
+    .process-icon-wrapper {
+        margin: 0 auto 1.5rem;
+        /* Center the icon on mobile */
+    }
+
+    .process-card.active {
+        transform: translate(-50%, -50%) rotate(-2deg) scale(1);
+    }
+
+    /* Similar mobile queue adjustments */
+    .process-card.next {
+        transform: translate(-50%, 60%) rotate(5deg) scale(0.9);
+    }
+}

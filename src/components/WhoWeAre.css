@@ -1,0 +1,181 @@
+.who-we-are-section {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    padding: 8rem 0;
+    /* More breathing room */
+    position: relative;
+    overflow: hidden;
+}
+
+.bio-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    /* Give text a bit more space, image slightly less */
+    gap: 5rem;
+    align-items: center;
+}
+
+.bio-text {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-play-state: paused;
+}
+
+.bio-text.animate {
+    animation-play-state: running;
+}
+
+.bio-text h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bio-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.bio-text p strong {
+    color: white;
+    font-weight: 600;
+}
+
+/* --- 3D INTERACTIVE HEADSHOT --- */
+
+.bio-image-wrapper {
+    display: flex;
+    justify-content: center;
+    perspective: 1000px;
+    /* Entrance animation */
+    opacity: 0;
+    transform: translateX(30px);
+    animation: fadeLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.2s;
+    animation-play-state: paused;
+    z-index: 10;
+}
+
+.bio-image-wrapper.animate {
+    animation-play-state: running;
+}
+
+.tilt-card-container {
+    position: relative;
+    transition: transform 0.1s ease-out;
+    /* Smooth follow, no lag */
+    cursor: pointer;
+    transform-style: preserve-3d;
+}
+
+.tilt-card-inner {
+    position: relative;
+    border-radius: 12px;
+    /* "Glass" tech frame backing */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0;
+    overflow: hidden;
+    /* Clip everything to the rounded card */
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+
+    /* The inner content transform slightly less or more for depth? */
+    transform-style: preserve-3d;
+}
+
+.rob-headshot-interactive {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    /* Subtly scale up image so we can move it slightly without gaps if we wanted parallax, 
+     but for now just keeping it tight */
+    transform: scale(1.01);
+    /* Filter: maybe a slight contrast boost? */
+    filter: contrast(1.05);
+}
+
+/* Glare Effect */
+.card-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 20;
+}
+
+/* Tech Accents */
+.card-accent {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(139, 92, 246, 0.5);
+    /* Brand purple */
+    transition: all 0.3s ease;
+    z-index: 15;
+}
+
+.card-accent.top-left {
+    top: 15px;
+    left: 15px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.card-accent.bottom-right {
+    bottom: 15px;
+    right: 15px;
+    border-left: none;
+    border-top: none;
+}
+
+/* On hover, accents glow */
+.tilt-card-container:hover .card-accent {
+    border-color: #a5b4fc;
+    box-shadow: 0 0 10px rgba(165, 180, 252, 0.5);
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 960px) {
+    .bio-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .bio-image-wrapper {
+        order: -1;
+        transform: translateY(30px);
+        animation-name: fadeUp;
+    }
+
+    /* Disable complicated tilt on mobile or reduce it? */
+    .tilt-card-container {
+        transform: none !important;
+    }
+}

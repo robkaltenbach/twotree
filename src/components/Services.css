@@ -1,0 +1,99 @@
+.services-section {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    padding: 8rem 0;
+    /* Increased vertical padding for "taller" feel */
+    min-height: 80vh;
+    /* Ensure it takes up significant viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center content vertically if screen is tall */
+}
+
+.section-header {
+    margin-bottom: 4rem;
+    max-width: 800px;
+    /* Removed auto margins to allow left alignment */
+    text-align: left;
+    /* Explicitly left align */
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-text-dark);
+    letter-spacing: -0.02em;
+}
+
+.section-header p {
+    color: var(--color-text-dark-muted);
+    font-size: 1.125rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid #E5E7EB;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+}
+
+.service-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--color-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.service-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-dark);
+}
+
+.service-card p {
+    color: var(--color-text-dark-muted);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Add a subtle decorative line on hover */
+.service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover::after {
+    transform: scaleX(1);
+}

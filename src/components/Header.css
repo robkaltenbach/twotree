@@ -1,0 +1,89 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+    background: rgba(10, 5, 30, 0.8);
+    /* Slight dark tint always for readability */
+    backdrop-filter: blur(10px);
+}
+
+.header.scrolled {
+    background: rgba(10, 5, 30, 0.95);
+    padding: 1rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    height: 48px;
+    /* Adjustable based on actual logo ratio */
+    width: auto;
+    /* Filter to make it white if it's black, or ensure it pops on dark bg */
+    filter: brightness(0) invert(1);
+    display: block;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.header-logo:hover {
+    opacity: 1;
+}
+
+nav {
+    margin-left: auto;
+    /* Push nav to the right, closer to the button */
+    margin-right: 2.5rem;
+    /* Space between nav and button */
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        /* Mobile menu needed later? */
+    }
+}
