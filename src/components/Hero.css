@@ -32,28 +32,107 @@
     line-height: 1.6;
 }
 
+.hero-stats-container {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 4rem;
+    transition: all 0.3s ease;
+}
+
+.hero-stats-container:hover {
+    transform: translateX(10px);
+}
+
 .hero-stats {
     display: flex;
-    gap: 3rem;
-    margin-top: 4rem;
+    gap: 2rem;
+    /* Reduced gap further */
     padding-top: 2rem;
+    padding-right: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Integrated Expert Stat */
+.expert-badge-minimal {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.expert-logo-small {
+    width: 24px;
+    /* Slightly smaller logo */
+    height: 24px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px var(--color-primary-glow));
+    /* Subtle purple glow */
+}
+
+.expert-text h3 {
+    font-size: 1.75rem !important;
+    /* Scaled down */
+    background: linear-gradient(135deg, #fff 0%, var(--color-primary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.expert-text p {
+    font-size: 0.75rem;
+    /* Scaled down */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-top: -0.1rem;
+    /* Adjust for tight tuck */
+    opacity: 0.8;
+}
+
+.hero-stats-container:hover .hero-stats {
+    border-top-color: var(--color-primary);
+}
+
+.hero-stats-container:hover .stat-arrow {
+    transform: translateX(5px);
+    color: var(--color-primary);
+}
+
+.stat-arrow {
+    color: var(--color-text-muted);
+    transition: all 0.3s ease;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Remove old badge styles */
+.hero-badges,
+.expert-badge,
+.expert-badge-icon,
+.expert-badge-text {
+    display: none;
 }
 
 .stat-item h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    /* Scaled down from 2.5rem */
     font-weight: 700;
     color: var(--color-text-light);
     margin-bottom: -0.2rem;
     /* Tucked closer */
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     line-height: 1;
 }
 
 .stat-item p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    /* Scaled down from 0.8rem */
     /* Slightly smaller for tighter tuck */
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -93,66 +172,93 @@
     position: relative;
     width: 100%;
     height: 100%;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .process-card {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* Deep Purple Glass Style */
-    background: rgba(46, 16, 101, 0.6);
-    /* Darker purple base */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    /* Soft purple border */
+    /* Use margin to avoid sub-pixel artifacts from translate(-50%, -50%) */
+    width: 380px;
+    margin-left: -190px;
+    /* Height is dynamic, so we'll use a safer centering or fixed height if possible */
+    /* Let's stay with translate3d but ensure it's on a clean integer if possible */
+    transform: translate3d(0, -50%, 0);
+
     padding: 2.5rem;
     border-radius: 24px;
-    /* Slightly larger rounded corners */
     color: var(--color-text-light);
-    width: 380px;
-    /* Landscape aspect ratio */
-    /* text-align: left; Remove center align for more character? Keeping center for now but can shift */
     text-align: left;
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(139, 92, 246, 0.1) inset;
-    /* Inner glow */
-
-    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    /* Unified transition for all states for perfect rhythm */
+    transition: all 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
     opacity: 0;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+    isolation: isolate;
+    will-change: transform, opacity;
+}
+
+/* Dedicated glass layer - browsers optimize this better than pseudo-elements */
+.card-glass-layer {
+    position: absolute;
+    top: -1px;
+    /* Slight bleed to avoid edge seams */
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: rgba(30, 20, 60, 0.8);
+    /* Solid-ish base */
+    backdrop-filter: blur(25px) saturate(150%);
+    -webkit-backdrop-filter: blur(25px) saturate(150%);
+    border-radius: inherit;
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    z-index: -1;
+    pointer-events: none;
+    transform: translateZ(0);
+    /* Hardware accelerate the blur layer independently */
 }
 
 /* STATE: ACTIVE (Center, Floating, Slightly Crooked) */
 .process-card.active {
-    transform: translate(-50%, -50%) rotate(-3deg) scale(1);
-    /* Crooked tilt */
     opacity: 1;
     z-index: 10;
+    /* Transition inherited from base for matched speed */
 }
 
-/* STATE: PREV (Exiting - Fly Up and Rotate Out) */
+/* Glare Effect */
+.card-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 20;
+}
+
+/* STATE: PREV (Exiting - Fly Up and Rotate Out to the RIGHT) */
 .process-card.prev {
-    transform: translate(-50%, -150%) rotate(-15deg) scale(0.9);
+    transform: translate3d(50%, -150%, 0) rotate(15deg) scale(0.9);
     opacity: 0;
     z-index: 5;
 }
 
-/* STATE: NEXT (Queue - Waiting at bottom right) */
+/* STATE: NEXT (Queue - Waiting at bottom RIGHT) */
 .process-card.next {
-    transform: translate(-40%, 40%) rotate(10deg) scale(0.9);
-    opacity: 0;
-    /* Make it invisible until it enters, or keep low opacity? User said 'queue' */
-    opacity: 0.0;
-    /* Let's hide it completely and just pop in/slide, or keep subtle? User liked the queue concept. */
-    /* Let's try visible but deep */
+    transform: translate3d(40%, 40%, 0) rotate(10deg) scale(0.9);
     opacity: 0.4;
     z-index: 4;
 }
 
-/* STATE: HIDDEN */
+/* STATE: HIDDEN - Deep below and RIGHT to match queue */
 .process-card.hidden {
-    transform: translate(-40%, 100%) rotate(10deg) scale(0.8);
+    transform: translate3d(40%, 150%, 0) rotate(10deg) scale(0.8);
     opacity: 0;
     z-index: 0;
     transition: none;
@@ -228,8 +334,8 @@
         transform: translate(-50%, -50%) rotate(-2deg) scale(1);
     }
 
-    /* Similar mobile queue adjustments */
+    /* Mobile queue adjustments - Right aligned */
     .process-card.next {
-        transform: translate(-50%, 60%) rotate(5deg) scale(0.9);
+        transform: translate3d(20%, 60%, 0) rotate(5deg) scale(0.9);
     }
 }

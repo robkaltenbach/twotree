@@ -13,32 +13,32 @@ import './Services.css';
 const servicesData = [
     {
         title: 'Web Development',
-        description: 'Custom websites built with modern frameworks like React and Next.js for speed and SEO.',
+        description: 'Custom websites built with modern frameworks like React and Next.js, optimized for performance and SEO.',
         icon: <Code2 size={28} />
     },
     {
         title: 'Mobile Apps',
-        description: 'Native and cross-platform mobile applications for iOS and Android devices.',
+        description: 'Native and cross-platform mobile applications for iOS and Android.',
         icon: <Smartphone size={28} />
     },
     {
-        title: 'UI/UX Design',
-        description: 'User-centered design that creates intuitive and engaging digital experiences.',
+        title: 'UI / UX Design',
+        description: 'User-centered design focused on clarity, usability, and real-world use.',
         icon: <Palette size={28} />
     },
     {
         title: 'App Repair',
-        description: 'Rescuing stalled projects, fixing critical bugs, and modernizing legacy codebases to get your business back on track.',
+        description: 'Rescuing stalled projects, fixing critical bugs, and modernizing legacy codebases to get products back on track.',
         icon: <Wrench size={28} />
     },
     {
         title: 'Maintenance',
-        description: 'Ongoing support, security updates, and performance optimization for your platforms.',
+        description: 'Ongoing support, security updates, and performance optimization.',
         icon: <LifeBuoy size={28} />
     },
     {
         title: 'Full Ownership',
-        description: 'You own everything. We turn over all GitHub repos, credentials, and project assets to you the moment we ship.',
+        description: 'You own everything. All repositories, credentials, and assets are handed over at launch.',
         icon: <Key size={28} />
     }
 ];
@@ -51,7 +51,7 @@ const Services = () => {
             <div className="container">
                 <div className={`section-header fade-in-section ${isVisible ? 'is-visible' : ''}`}>
                     <h2>Our Expertise</h2>
-                    <p>Comprehensive digital services to help your business thrive in the modern age.</p>
+                    <p>Web, Mobile, and App Repair Services</p>
                 </div>
 
                 <div className="services-grid">

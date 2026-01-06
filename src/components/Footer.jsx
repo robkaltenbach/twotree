@@ -1,55 +1,212 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Linkedin, Github, Instagram } from 'lucide-react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import Button from './UI/Button';
 import './Footer.css';
 
 const Footer = () => {
-    const { ref, isVisible } = useScrollAnimation(0.2);
+    const { ref: sectionRef, isVisible } = useScrollAnimation(0.2);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [isSpotlightVisible, setIsSpotlightVisible] = useState(false);
+
+    // Form State
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        budget: '',
+        message: ''
+    });
+    const [status, setStatus] = useState('idle'); // idle, loading, success, error
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleMouseMove = (e) => {
+        if (!sectionRef.current) return;
+        const rect = sectionRef.current.getBoundingClientRect();
+        setMousePos({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        });
+    };
+
+    const handleMouseEnter = () => {
+        setIsSpotlightVisible(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsSpotlightVisible(false);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus('loading');
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', budget: '', message: '' });
+            } else {
+                setStatus('error');
+                setErrorMessage(data.error || 'Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            console.error('Submission Error:', error);
+            setStatus('error');
+            setErrorMessage('Network error. Please check your connection.');
+        }
+    };
 
     return (
-        <footer id="contact" className="footer" ref={ref}>
+        <footer
+            id="contact"
+            className="footer"
+            ref={sectionRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            <div
+                className={`spotlight-overlay ${isSpotlightVisible ? 'active' : ''}`}
+                style={{
+                    background: `radial-gradient(circle 450px at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.3) 0%, rgba(124, 58, 237, 0.15) 30%, transparent 80%)`
+                }}
+            />
             <div className="container">
                 <div className={`footer-content fade-in-section ${isVisible ? 'is-visible' : ''}`}>
                     <div className="footer-cta">
-                        <h2>Ready to start your next project?</h2>
+                        <h2>It's showtime</h2>
                         <p>
                             Let's turn your ideas into reality. Reach out to discuss your vision and how we can help.
                         </p>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <div className="footer-contact-info">
                             <div>
-                                <span style={{ display: 'block', fontSize: '0.85rem', color: '#6B7280', marginBottom: '0.25rem' }}>EMAIL</span>
-                                <a href="mailto:hello@twotree.dev" style={{ fontSize: '1.25rem', color: 'white' }}>hello@twotree.dev</a>
+                                <span className="label-tiny">EMAIL</span>
+                                <a href="mailto:hello@twotree.dev" className="email-link">hello@twotree.dev</a>
                             </div>
                         </div>
                     </div>
 
-                    <div className="contact-form">
-                        <form onSubmit={(e) => e.preventDefault()}>
-                            <div className="form-group">
-                                <label>Name</label>
-                                <input type="text" className="form-input" placeholder="John Doe" />
-                            </div>
-                            <div className="form-group">
-                                <label>Email</label>
-                                <input type="email" className="form-input" placeholder="john@company.com" />
-                            </div>
-                            <div className="form-group">
-                                <label>Message</label>
-                                <textarea className="form-input" placeholder="Tell us about your project..."></textarea>
-                            </div>
-                            <Button variant="primary" style={{ width: '100%' }}>Send Message</Button>
-                        </form>
+                    <div className="contact-form-container">
+                        <div className="contact-form">
+                            {status === 'success' ? (
+                                <div className="success-message">
+                                    <div className="success-icon">🚀</div>
+                                    <h3>Message Sent!</h3>
+                                    <p>Thanks for reaching out. We'll be in touch soon.</p>
+                                    <Button variant="secondary" onClick={() => setStatus('idle')}>Send Another</Button>
+                                </div>
+                            ) : (
+                                <form onSubmit={handleSubmit}>
+                                    <div className="form-group">
+                                        <label>Name</label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            className="form-input"
+                                            placeholder="John Doe"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Email</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            className="form-input"
+                                            placeholder="john@company.com"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Project Budget <span className="optional-tag">(Optional)</span></label>
+                                        <input
+                                            type="text"
+                                            name="budget"
+                                            value={formData.budget}
+                                            onChange={handleInputChange}
+                                            className="form-input"
+                                            placeholder="e.g. $5k - $10k"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Message</label>
+                                        <textarea
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleInputChange}
+                                            className="form-input"
+                                            placeholder="Tell us about your project..."
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    {status === 'error' && <p className="error-message-text">{errorMessage}</p>}
+                                    <Button
+                                        variant="primary"
+                                        type="submit"
+                                        disabled={status === 'loading'}
+                                        style={{ width: '100%' }}
+                                    >
+                                        {status === 'loading' ? 'Sending...' : 'Send Message'}
+                                    </Button>
+                                </form>
+                            )}
+                        </div>
                     </div>
                 </div>
 
                 <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} Two Tree Creative. All rights reserved.</p>
+                    <div className="footer-copyright">
+                        <p>&copy; {new Date().getFullYear()} Two Tree Creative. All rights reserved.</p>
+                        <span className="chicago-flag" title="Made with ❤️ in Chicago">
+                            <svg viewBox="0 0 300 200" width="24" height="16">
+                                <rect width="300" height="200" fill="white" />
+                                <rect width="300" height="33.3" y="33.3" fill="#41B6E6" />
+                                <rect width="300" height="33.3" y="133.3" fill="#41B6E6" />
+                                <g fill="#FF0000">
+                                    <path d="M60 100l6 14 14-6-6-14 6-14-14 6z M60 100l-6-14-14 6 6 14-6 14 14-6z" transform="translate(0,0)" />
+                                    <path d="M120 100l6 14 14-6-6-14 6-14-14 6z M120 100l-6-14-14 6 6 14-6 14 14-6z" transform="translate(0,0)" />
+                                    <path d="M180 100l6 14 14-6-6-14 6-14-14 6z M180 100l-6-14-14 6 6 14-6 14 14-6z" transform="translate(0,0)" />
+                                    <path d="M240 100l6 14 14-6-6-14 6-14-14 6z M240 100l-6-14-14 6 6 14-6 14 14-6z" transform="translate(0,0)" />
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
                     <div className="social-links">
-                        <a href="#" className="social-link">Twitter</a>
-                        <a href="#" className="social-link">LinkedIn</a>
-                        <a href="#" className="social-link">GitHub</a>
-                        <a href="#" className="social-link">Instagram</a>
+                        <a href="https://x.com/robkaltenbach" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="X (Twitter)">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.933zm-1.292 19.49h2.039L6.486 3.24H4.298l13.311 17.403z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/robkaltenbach" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="LinkedIn">
+                            <Linkedin size={20} />
+                        </a>
+                        <a href="https://github.com/robkaltenbach" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="GitHub">
+                            <Github size={20} />
+                        </a>
+                        <a href="https://instagram.com/robkaltenbach" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram">
+                            <Instagram size={20} />
+                        </a>
+                        <a href="https://contra.com/robkaltenbach" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Contra">
+                            <img src="/contra-logo.png" alt="Contra" className="social-logo-img" />
+                        </a>
                     </div>
                 </div>
             </div>
