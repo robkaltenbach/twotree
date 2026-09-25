@@ -1,0 +1,40 @@
+# Robert Kaltenbach — Two Tree Creative
+
+> Robert Kaltenbach is a Chicago-based full-stack engineer with 10+ years of experience building software and running businesses. He builds AI-first products, web and mobile apps, and rescues stalled or broken codebases. He works independently as Two Tree Creative, is available for freelance projects, and is open to full-time and contract roles.
+
+## About
+
+- Developer, designer, and operator. Before Two Tree Creative, Robert owned and ran multi-location companies and built the systems behind them: point-of-sale, loyalty programs, internal tools, and customer-facing apps.
+- Senior-led and hands-on: no junior bench and no agency layers.
+- Stack: React, React Native / Expo, Node.js, Supabase, PostgreSQL, the OpenAI API, and AI-assisted development with Claude Code and Cursor. Recognized as an Anything expert.
+- Rated 5.0 by clients on Contra.
+
+## Services
+
+- AI-first products and internal tools that reduce manual work
+- Web development (React and modern stacks)
+- Mobile apps (cross-platform with Expo)
+- App repair and rescue: stalled builds, production fires, legacy code
+- UI/UX design
+- Ongoing maintenance: releases, security, performance
+- AI consulting: where automation fits, what to ship first, how to roll it out safely
+
+## Selected work
+
+- [Memory Loop](https://contra.com/community/gLw2WMCp-boost-your-memory-retention-with-memory?r=robkaltenbach): Turn daily learnings into long term memory by using the proven spaced-repetition approach. (AI/Mobile; built with Cursor, Claude Code, OpenAI)
+- [Inbox Pilot](https://contra.com/community/Ssv9XlZs-streamline-team-emails-with-inbox-pilot?r=robkaltenbach): AI-assisted Gmail triage: sort mail into lanes, draft replies, and optionally handle the same flow from Slack. (Web/Automation; built with Cursor, OpenAI, Slack)
+- [Quail - Social Media Template](https://contra.com/community/Bd7qyYUE-remixable-social-network-template-fully?r=robkaltenbach): A beautiful, mobile-first social media template built with Anything. Ready to customize and deploy. (Templates; built with Anything, Canva)
+- [Lofi Holiday Player](https://contra.com/community/cmjj0tuhw00003b6sjfbks9do?r=robkaltenbach): A cozy, interactive holiday-themed music player designed to create the perfect relaxed ambiance. (App Development; built with OpenAI, Suno AI, Cursor, React)
+- [iris AI POS](https://contra.com/community/cmj13zg4y0000356qk15l5zhh?r=robkaltenbach): A mobile-first AI point-of-sale system using real-time object detection and LLMs to automate inventory and tickets. (AI / Mobile; built with Tempo, Supabase, Roboflow, Expo)
+- [Enchanted Storybook](https://contra.com/community/cmi98on280000356wqrr01398?r=robkaltenbach): An AI-powered story creator where young readers shape tales through choices and their own drawings. (AI / Creative; built with Builder.io, OpenAI, Adobe Photoshop)
+- [Boomboxr](https://contra.com/community/cmhur750t00002a6plzwwcc9b?r=robkaltenbach): A head-to-head music trivia game featuring satisfying swipes, curated packs, and competitive progression. (Mobile / Gaming; built with Anything, Expo, Photoshop)
+- [Tempanion](https://contra.com/community/cmhkxnnmi00012a6g819y1y76?r=robkaltenbach): An iOS and Windows companion app that streams real-time PC hardware stats to your phone, saving screen space. (Mobile / Desktop; built with Cursor, Expo, Supabase)
+- [Elara Loyalty](https://contra.com/community/cmhkxmc3400002a6gt3uk4du6?r=robkaltenbach): A data-first loyalty and rewards system designed by small businesses, for small businesses. (SaaS / Mobile; built with Anything, Cursor, Supabase, Expo)
+
+## Contact
+
+- Website: https://www.twotree.dev/
+- Email: hello@twotree.dev
+- LinkedIn: https://www.linkedin.com/in/robkaltenbach
+- Contra (portfolio and reviews): https://contra.com/robkaltenbach
+- GitHub: https://github.com/robkaltenbach

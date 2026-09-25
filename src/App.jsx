@@ -5,6 +5,7 @@ import Services from './components/Services';
 import WhoWeAre from './components/WhoWeAre';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
+import StructuredData from './components/StructuredData';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Projects />
       </main>
       <Footer />
+      <StructuredData />
     </div>
   );
 }

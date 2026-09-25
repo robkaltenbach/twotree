@@ -3,7 +3,7 @@ import useScrollAnimation from '../hooks/useScrollAnimation';
 import './WhoWeAre.css';
 
 const WhoWeAre = () => {
-    const { ref: sectionRef, isVisible } = useScrollAnimation(0.2);
+    const { ref: sectionRef, isVisible } = useScrollAnimation();
     const cardRef = useRef(null);
 
     // Tilt State
@@ -45,15 +45,15 @@ const WhoWeAre = () => {
             <div className="container">
                 <div className="bio-content">
                     <div className={`bio-text ${isVisible ? 'animate' : ''}`}>
-                        <h2>Built by Experience.</h2>
+                        <h2>About</h2>
                         <p>
-                            Two Tree Creative is a senior-led development studio focused on <strong>building, repairing, and shipping modern applications.</strong>
+                            Work by <strong>Robert Kaltenbach</strong> under <strong>Two Tree Creative</strong> — shipped projects, how problems get framed, and what collaboration looks like on real builds. Open to <strong>freelance</strong>, <strong>full-time</strong>, and <strong>contract</strong> conversations when the fit is right; client engagements run through Two Tree.
                         </p>
                         <p>
-                            The studio is run by <strong>Robert Kaltenbach</strong>, a developer, designer, and operator with over a decade of experience building software and running real businesses. Before Two Tree, Robert owned and operated multi-location companies and built the systems behind them — from point-of-sale and loyalty platforms to internal tools and customer-facing apps. That background shapes the work here: software has to function in the real world, not just look good in theory.
+                            Robert is a developer, designer, and operator with <strong>10+ years</strong> building software and running businesses. He owned multi-location companies and built the systems behind them — POS, loyalty, internal tools, and customer-facing apps. That background shows up as an insistence that software survive contact with reality, not just demo well.
                         </p>
                         <p>
-                            Today, Two Tree helps founders and teams build web and mobile apps, repair unstable or unfinished products, and make clear decisions inside existing codebases about what to fix, rebuild, or remove. The studio is intentionally small and hands-on — no junior layers, no bloated process, <strong>just practical engineering and software that ships and stays shipped.</strong>
+                            Engagements focus on <strong>AI-first products, web and mobile apps, and rescue work</strong> on codebases that need a steady hand. The practice stays small and senior-led — no junior bench, no theater. <strong>Freelance availability</strong> opens when there's a clear problem and room to execute; <strong>employer and recruiter outreach</strong> is welcome for the right role. Use the contact form below either way.
                         </p>
                     </div>
 
@@ -68,7 +68,7 @@ const WhoWeAre = () => {
                             ref={cardRef}
                         >
                             <div className="tilt-card-inner">
-                                <img src="/robheadshot-tp.png" alt="Robert Kaltenbach" className="rob-headshot-interactive" />
+                                <img src="/robheadshot-tp.webp" alt="Robert Kaltenbach" className="rob-headshot-interactive" />
                                 {/* Glare and accents */}
                                 <div
                                     className="card-glare"

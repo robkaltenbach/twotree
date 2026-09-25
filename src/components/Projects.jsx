@@ -1,61 +1,12 @@
 import React from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import Button from './UI/Button';
+import LazyVideo from './UI/LazyVideo';
+import { projectsData } from '../data/projects';
 import './Projects.css';
 
-const projectsData = [
-    {
-        title: 'Lofi Holiday Player',
-        category: 'App Development',
-        description: 'A cozy, interactive holiday-themed music player designed to create the perfect relaxed ambiance.',
-        tags: ['OpenAI', 'Suno AI', 'Cursor', 'React'],
-        videoSrc: '/lofi-xozy.mp4',
-        projectUrl: 'https://contra.com/community/cmjj0tuhw00003b6sjfbks9do?r=robkaltenbach'
-    },
-    {
-        title: 'iris AI POS',
-        category: 'AI / Mobile',
-        description: 'A mobile-first AI point-of-sale system using real-time object detection and LLMs to automate inventory and tickets.',
-        tags: ['Tempo', 'Supabase', 'Roboflow', 'Expo'],
-        videoSrc: '/iris-pos.mp4',
-        projectUrl: 'https://contra.com/community/cmj13zg4y0000356qk15l5zhh?r=robkaltenbach'
-    },
-    {
-        title: 'Enchanted Storybook',
-        category: 'AI / Creative',
-        description: 'An AI-powered story creator where young readers shape tales through choices and their own drawings.',
-        tags: ['Builder.io', 'OpenAI', 'Adobe Photoshop'],
-        videoSrc: '/enchanted-storybook.mp4',
-        projectUrl: 'https://contra.com/community/cmi98on280000356wqrr01398?r=robkaltenbach'
-    },
-    {
-        title: 'Boomboxr',
-        category: 'Mobile / Gaming',
-        description: 'A head-to-head music trivia game featuring satisfying swipes, curated packs, and competitive progression.',
-        tags: ['Anything', 'Expo', 'Photoshop'],
-        videoSrc: '/boomboxr.mp4',
-        projectUrl: 'https://contra.com/community/cmhur750t00002a6plzwwcc9b?r=robkaltenbach'
-    },
-    {
-        title: 'Tempanion',
-        category: 'Mobile / Desktop',
-        description: 'An iOS and Windows companion app that streams real-time PC hardware stats to your phone, saving screen space.',
-        tags: ['Cursor', 'Expo', 'Supabase'],
-        videoSrc: '/tempanion2.webm',
-        projectUrl: 'https://contra.com/community/cmhkxnnmi00012a6g819y1y76?r=robkaltenbach'
-    },
-    {
-        title: 'Elara Loyalty',
-        category: 'SaaS / Mobile',
-        description: 'A data-first loyalty and rewards system designed by small businesses, for small businesses.',
-        tags: ['Anything', 'Cursor', 'Supabase', 'Expo'],
-        videoSrc: '/elara-loyalty.mp4',
-        projectUrl: 'https://contra.com/community/cmhkxmc3400002a6gt3uk4du6?r=robkaltenbach'
-    },
-];
-
 const Projects = () => {
-    const { ref, isVisible } = useScrollAnimation(0.2);
+    const { ref, isVisible } = useScrollAnimation();
 
     return (
         <section id="projects" className="section projects-section" ref={ref}>
@@ -63,45 +14,58 @@ const Projects = () => {
                 <div className={`section-header fade-in-section ${isVisible ? 'is-visible' : ''}`}>
                     <div className="flex justify-between items-end" style={{ gap: '2rem', flexWrap: 'wrap' }}>
                         <div>
-                            <h2>Featured Work</h2>
-                            <p>We take pride in every project we ship.</p>
+                            <h2>Selected work</h2>
+                            <p>Representative shipped work across products and platforms — each card links to a full case study on Contra.</p>
                         </div>
-                        <a href="https://contra.com/robkaltenbach/work?r=robkaltenbach" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                            <Button variant="primary">View All Projects</Button>
+                        <a
+                            href="https://contra.com/robkaltenbach/work?r=robkaltenbach"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-primary"
+                        >
+                            More on Contra
                         </a>
                     </div>
                 </div>
 
                 <div className="projects-grid">
-                    {projectsData.map((project, index) => (
-                        <div
-                            className={`project-card fade-in-section ${isVisible ? 'is-visible' : ''}`}
-                            key={index}
-                            style={{ transitionDelay: `${index * 150}ms` }}
-                        >
-                            <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                    {projectsData.map((project, index) => {
+                        const isSoon = project.comingSoon;
+                        const media = (
+                            <>
                                 <div className="project-image">
-                                    {project.videoSrc ? (
-                                        <video
+                                    {project.imageSrc ? (
+                                        <img
+                                            className="project-static-img"
+                                            src={project.imageSrc}
+                                            alt={project.imageAlt ?? ''}
+                                            loading="lazy"
+                                        />
+                                    ) : project.videoSrc ? (
+                                        <LazyVideo
                                             className="project-video"
                                             src={project.videoSrc}
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
+                                            poster={project.posterSrc}
                                             style={{
                                                 width: '100%',
                                                 height: '100%',
-                                                objectFit: 'cover'
+                                                objectFit: project.videoObjectFit ?? 'cover',
+                                                objectPosition: project.videoObjectPosition ?? 'center'
                                             }}
                                         />
+                                    ) : project.placeholder ? (
+                                        <div className="project-placeholder project-placeholder-pending">
+                                            <span className="project-placeholder-label">Preview coming soon</span>
+                                        </div>
                                     ) : (
                                         <div className="project-placeholder" style={{ background: project.imageColor }}>
                                             <span style={{ color: 'white', fontSize: '1.2rem' }}>{project.title} Preview</span>
                                         </div>
                                     )}
                                     <div className="project-overlay">
-                                        <Button variant="primary">View Case Study</Button>
+                                        <Button variant="primary" as="span">
+                                            {isSoon ? 'Coming soon' : 'View Case Study'}
+                                        </Button>
                                     </div>
                                 </div>
                                 <div className="project-content">
@@ -113,9 +77,33 @@ const Projects = () => {
                                     <h3>{project.title}</h3>
                                     <p>{project.description}</p>
                                 </div>
-                            </a>
-                        </div>
-                    ))}
+                            </>
+                        );
+
+                        return (
+                            <div
+                                className={`project-card fade-in-section ${isVisible ? 'is-visible' : ''} ${isSoon ? 'project-card-soon' : ''}`}
+                                key={project.title}
+                                style={{ transitionDelay: `${index * 150}ms` }}
+                            >
+                                {isSoon ? (
+                                    <div className="project-card-inner" style={{ display: 'block' }}>
+                                        {media}
+                                    </div>
+                                ) : (
+                                    <a
+                                        href={project.projectUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="project-card-inner"
+                                        style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                                    >
+                                        {media}
+                                    </a>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

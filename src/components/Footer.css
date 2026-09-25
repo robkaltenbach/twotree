@@ -184,8 +184,28 @@ textarea.form-input {
 
 .footer-copyright {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+}
+
+.footer-availability {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.footer-copyright-row {
+    display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.footer-copyright-row > p {
+    margin: 0;
 }
 
 .chicago-flag {
@@ -255,5 +275,13 @@ textarea.form-input {
         flex-direction: column;
         gap: 2rem;
         text-align: center;
+    }
+
+    .footer-copyright {
+        align-items: center;
+    }
+
+    .footer-copyright-row {
+        justify-content: center;
     }
 }

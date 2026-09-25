@@ -13,6 +13,7 @@ html {
   --color-bg-card: rgba(255, 255, 255, 0.03);
   --color-primary: #7c3aed;
   /* Violet 600 */
+  --color-primary-hover: #6d28d9;
   --color-primary-glow: rgba(124, 58, 237, 0.5);
 
   --color-bg-light: #f8fafc;
@@ -137,4 +138,22 @@ button:focus-visible {
 
 .stagger-3 {
   transition-delay: 300ms;
+}
+/* Respect the OS "reduce motion" setting: show content without fades or movement. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-in-section,
+  .bio-text,
+  .bio-image-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

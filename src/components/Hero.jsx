@@ -8,25 +8,25 @@ const processSteps = [
         icon: <Lightbulb size={32} />,
         step: 'Step 1',
         title: 'Discover',
-        description: 'We dive deep to understand your goals, audience, and unique technical requirements.'
+        description: 'Goals, constraints, and what “done” looks like — for users and for the business — get clear first.'
     },
     {
         icon: <MousePointer2 size={32} />,
         step: 'Step 2',
         title: 'Design',
-        description: 'Crafting intuitive prototypes and high-fidelity visuals that perfectly align with your brand.'
+        description: 'Flows and visuals are shaped to be straightforward to build and solid to use in the real world.'
     },
     {
         icon: <Code2 size={32} />,
         step: 'Step 3',
         title: 'Develop',
-        description: 'Writing clean, scalable code using the latest technologies and industry best practices.'
+        description: 'Shipping means maintainable code and modern tooling — AI where it earns its place, humans where judgment matters.'
     },
     {
         icon: <Rocket size={32} />,
         step: 'Step 4',
         title: 'Launch',
-        description: 'Deploying your product with thorough testing and comprehensive ongoing support strategies.'
+        description: 'Launch includes testing and handoff you can rely on, with support available for what comes next.'
     }
 ];
 
@@ -40,12 +40,16 @@ const Hero = () => {
     const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
 
     useEffect(() => {
-        setIsLoaded(true);
+        // Deferred a frame so the prerendered markup hydrates before the fade-in starts.
+        const frame = requestAnimationFrame(() => setIsLoaded(true));
         const interval = setInterval(() => {
             setActiveStep((prev) => (prev + 1) % processSteps.length);
         }, 4000);
 
-        return () => clearInterval(interval);
+        return () => {
+            cancelAnimationFrame(frame);
+            clearInterval(interval);
+        };
     }, []);
 
     const handleMouseMove = (e) => {
@@ -85,16 +89,16 @@ const Hero = () => {
         <section className="hero">
             <div className="container hero-content">
                 <div className={`hero-text fade-in-section ${isLoaded ? 'is-visible' : ''}`}>
-                    <h1>Builds, repairs, and rescue work for modern apps.</h1>
-                    <p>Senior development for products that need to ship.</p>
+                    <h1>Redesigning how work gets done using AI</h1>
+                    <p>
+                        From internal tools to customer-facing systems, the focus is AI-first solutions that reduce manual work and improve consistency.
+                        <br />
+                        <strong>Available for freelance</strong> and <strong>open to work</strong>
+                    </p>
 
-                    <div className="flex gap-sm">
-                        <a href="#contact" style={{ textDecoration: 'none' }}>
-                            <Button variant="primary">Start a Project</Button>
-                        </a>
-                        <a href="#projects" style={{ textDecoration: 'none' }}>
-                            <Button variant="outline">View Our Work</Button>
-                        </a>
+                    <div className="hero-cta-group">
+                        <Button variant="primary" href="#contact">Get in touch</Button>
+                        <Button variant="outline" href="#projects">See selected work</Button>
                     </div>
 
                     <a
@@ -105,25 +109,33 @@ const Hero = () => {
                     >
                         <div className="hero-stats">
                             <div className="stat-item">
-                                <h3>Top 5%</h3>
-                                <p>Creator</p>
+                                <div className="stat-item-inner">
+                                    <h3>Top 1%</h3>
+                                    <p>Creator</p>
+                                </div>
                             </div>
                             <div className="stat-item">
-                                <h3 className="flex items-center gap-xs">
-                                    5.0 <Star size={24} fill="currentColor" className="text-primary" />
-                                </h3>
-                                <p>Satisfaction</p>
+                                <div className="stat-item-inner">
+                                    <h3 className="flex items-center gap-xs">
+                                        5.0 <Star size={24} fill="currentColor" className="text-primary" />
+                                    </h3>
+                                    <p>Satisfaction</p>
+                                </div>
                             </div>
                             <div className="stat-item">
-                                <h3>10+</h3>
-                                <p>Years Experience</p>
+                                <div className="stat-item-inner">
+                                    <h3>10+</h3>
+                                    <p>Years Experience</p>
+                                </div>
                             </div>
                             <div className="stat-item expert-stat">
-                                <div className="expert-badge-minimal">
-                                    <img src="/anything-logo.png" alt="Anything" className="expert-logo-small" />
-                                    <div className="expert-text">
-                                        <h3>Anything</h3>
-                                        <p>Expert</p>
+                                <div className="stat-item-inner">
+                                    <div className="expert-badge-minimal">
+                                        <img src="/anything-logo.png" alt="Anything" className="expert-logo-small" />
+                                        <div className="expert-text">
+                                            <h3>Anything</h3>
+                                            <p>Expert</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

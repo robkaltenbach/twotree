@@ -5,7 +5,7 @@ import Button from './UI/Button';
 import './Footer.css';
 
 const Footer = () => {
-    const { ref: sectionRef, isVisible } = useScrollAnimation(0.2);
+    const { ref: sectionRef, isVisible } = useScrollAnimation();
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [isSpotlightVisible, setIsSpotlightVisible] = useState(false);
 
@@ -87,9 +87,9 @@ const Footer = () => {
             <div className="container">
                 <div className={`footer-content fade-in-section ${isVisible ? 'is-visible' : ''}`}>
                     <div className="footer-cta">
-                        <h2>It's showtime</h2>
+                        <h2>Connect</h2>
                         <p>
-                            Let's turn your ideas into reality. Reach out to discuss your vision and how we can help.
+                            Freelance inquiries, full-time opportunities, or anything in between — share what you're building, what's broken, what needs to ship, or the role you're hiring for. Messages get read directly; replies follow when there's a fit.
                         </p>
 
                         <div className="footer-contact-info">
@@ -106,15 +106,17 @@ const Footer = () => {
                                 <div className="success-message">
                                     <div className="success-icon">🚀</div>
                                     <h3>Message Sent!</h3>
-                                    <p>Thanks for reaching out. We'll be in touch soon.</p>
+                                    <p>Thanks for reaching out. A reply will follow soon.</p>
                                     <Button variant="secondary" onClick={() => setStatus('idle')}>Send Another</Button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-group">
-                                        <label>Name</label>
+                                        <label htmlFor="contact-name">Name</label>
                                         <input
                                             type="text"
+                                            id="contact-name"
+                                            autoComplete="name"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
@@ -124,9 +126,11 @@ const Footer = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Email</label>
+                                        <label htmlFor="contact-email">Email</label>
                                         <input
                                             type="email"
+                                            id="contact-email"
+                                            autoComplete="email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
@@ -136,9 +140,10 @@ const Footer = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Project Budget <span className="optional-tag">(Optional)</span></label>
+                                        <label htmlFor="contact-budget">Project Budget <span className="optional-tag">(Optional)</span></label>
                                         <input
                                             type="text"
+                                            id="contact-budget"
                                             name="budget"
                                             value={formData.budget}
                                             onChange={handleInputChange}
@@ -147,13 +152,14 @@ const Footer = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Message</label>
+                                        <label htmlFor="contact-message">Message</label>
                                         <textarea
+                                            id="contact-message"
                                             name="message"
                                             value={formData.message}
                                             onChange={handleInputChange}
                                             className="form-input"
-                                            placeholder="Tell us about your project..."
+                                            placeholder="Project, role, or opportunity — a few lines is enough"
                                             required
                                         ></textarea>
                                     </div>
@@ -174,7 +180,9 @@ const Footer = () => {
 
                 <div className="footer-bottom">
                     <div className="footer-copyright">
-                        <p>&copy; {new Date().getFullYear()} Two Tree Creative. All rights reserved.</p>
+                        <p className="footer-availability">Available for freelance · Open to work</p>
+                        <div className="footer-copyright-row">
+                        <p>&copy; {new Date().getFullYear()} Robert Kaltenbach · Two Tree Creative</p>
                         <span className="chicago-flag" title="Made with ❤️ in Chicago">
                             <svg viewBox="0 0 300 200" width="24" height="16">
                                 <rect width="300" height="200" fill="white" />
@@ -188,6 +196,7 @@ const Footer = () => {
                                 </g>
                             </svg>
                         </span>
+                        </div>
                     </div>
                     <div className="social-links">
                         <a href="https://x.com/robkaltenbach" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="X (Twitter)">

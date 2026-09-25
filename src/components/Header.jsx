@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from './UI/Button';
 import './Header.css';
 
 const Header = () => {
@@ -7,7 +6,7 @@ const Header = () => {
         <header className="header">
             <div className="container nav-container">
                 <a href="#" className="logo">
-                    <img src="/twotree-wide.png" alt="Two Tree Creative" className="header-logo" />
+                    <img src="/twotree-wide.webp" alt="Robert Kaltenbach — Two Tree Creative" className="header-logo" />
                 </a>
 
                 <nav>
@@ -17,10 +16,6 @@ const Header = () => {
                         <li><a href="#contact" className="nav-link">Contact</a></li>
                     </ul>
                 </nav>
-
-                <a href="#contact" style={{ textDecoration: 'none' }}>
-                    <Button variant="primary">Get Started</Button>
-                </a>
             </div>
         </header>
     );
