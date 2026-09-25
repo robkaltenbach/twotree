@@ -1,13 +1,11 @@
 {
     "version": 2,
-    "rewrites": [
+    "headers": [
         {
-            "source": "/api/(.*)",
-            "destination": "/api/$1"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
+            "source": "/(.*)\\.(mp4|webm|webp|png)",
+            "headers": [
+                { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
+            ]
         }
     ]
 }

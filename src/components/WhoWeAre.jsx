@@ -68,7 +68,7 @@ const WhoWeAre = () => {
                             ref={cardRef}
                         >
                             <div className="tilt-card-inner">
-                                <img src="/robheadshot-tp.png" alt="Robert Kaltenbach" className="rob-headshot-interactive" />
+                                <img src="/robheadshot-tp.webp" alt="Robert Kaltenbach" className="rob-headshot-interactive" />
                                 {/* Glare and accents */}
                                 <div
                                     className="card-glare"

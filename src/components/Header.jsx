@@ -6,7 +6,7 @@ const Header = () => {
         <header className="header">
             <div className="container nav-container">
                 <a href="#" className="logo">
-                    <img src="/twotree-wide.png" alt="Robert Kaltenbach — Two Tree Creative" className="header-logo" />
+                    <img src="/twotree-wide.webp" alt="Robert Kaltenbach — Two Tree Creative" className="header-logo" />
                 </a>
 
                 <nav>
