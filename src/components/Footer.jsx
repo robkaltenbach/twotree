@@ -112,9 +112,11 @@ const Footer = () => {
                             ) : (
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-group">
-                                        <label>Name</label>
+                                        <label htmlFor="contact-name">Name</label>
                                         <input
                                             type="text"
+                                            id="contact-name"
+                                            autoComplete="name"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
@@ -124,9 +126,11 @@ const Footer = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Email</label>
+                                        <label htmlFor="contact-email">Email</label>
                                         <input
                                             type="email"
+                                            id="contact-email"
+                                            autoComplete="email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
@@ -136,9 +140,10 @@ const Footer = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Project Budget <span className="optional-tag">(Optional)</span></label>
+                                        <label htmlFor="contact-budget">Project Budget <span className="optional-tag">(Optional)</span></label>
                                         <input
                                             type="text"
+                                            id="contact-budget"
                                             name="budget"
                                             value={formData.budget}
                                             onChange={handleInputChange}
@@ -147,8 +152,9 @@ const Footer = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Message</label>
+                                        <label htmlFor="contact-message">Message</label>
                                         <textarea
+                                            id="contact-message"
                                             name="message"
                                             value={formData.message}
                                             onChange={handleInputChange}
