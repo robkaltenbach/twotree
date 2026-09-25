@@ -284,4 +284,45 @@ textarea.form-input {
     .footer-copyright-row {
         justify-content: center;
     }
+
+    /* Bigger tap targets for the social icons */
+    .social-links {
+        gap: 0.25rem;
+    }
+
+    .social-icon-link {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 4.5rem 0 3rem;
+    }
+
+    .footer-content {
+        gap: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .footer-cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .footer-cta p {
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+        text-align: left;
+        max-width: none;
+    }
+
+    .form-input {
+        box-sizing: border-box;
+    }
 }

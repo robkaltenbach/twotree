@@ -179,3 +179,23 @@
         transform: none !important;
     }
 }
+
+@media (max-width: 768px) {
+    .who-we-are-section {
+        padding: 4.5rem 0;
+    }
+
+    .bio-text h2 {
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .bio-text p {
+        font-size: 1rem;
+    }
+
+    .bio-image-wrapper {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+}

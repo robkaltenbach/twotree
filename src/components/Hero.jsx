@@ -131,13 +131,11 @@ const Hero = () => {
                             </div>
                             <div className="stat-item expert-stat">
                                 <div className="stat-item-inner">
-                                    <div className="expert-badge-minimal">
-                                        <img src="/anything-logo.png" alt="Anything" className="expert-logo-small" />
-                                        <div className="expert-text">
-                                            <span className="stat-value">Anything</span>
-                                            <p>Expert</p>
-                                        </div>
-                                    </div>
+                                    <span className="stat-value">
+                                        <img src="/anything-logo.png" alt="" className="expert-logo-small" />
+                                        <span className="expert-name">Anything</span>
+                                    </span>
+                                    <p>Expert</p>
                                 </div>
                             </div>
                             <div className="stat-arrow">

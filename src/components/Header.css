@@ -113,11 +113,40 @@ nav {
     }
 
     .header-logo {
-        height: 36px;
+        height: 30px;
+    }
+
+    /* Compact nav instead of hiding it: three short links fit beside the logo */
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-links li::before {
+        display: none;
+    }
+
+    /* Services sits right below the hero, so phones get Portfolio + Contact only */
+    .nav-links li:first-child {
+        display: none;
+    }
+
+    .nav-link {
+        font-size: 0.7rem;
+        letter-spacing: 0.06em;
+        padding: 0.75rem 0;
+    }
+}
+
+@media (max-width: 370px) {
+    .header-logo {
+        height: 24px;
     }
 
     .nav-links {
-        display: none;
-        /* Mobile menu needed later? */
+        gap: 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 0.65rem;
     }
 }
