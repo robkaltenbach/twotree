@@ -26,6 +26,25 @@
     text-wrap: balance;
 }
 
+/* Name and role above the headline, so visitors and search engines see who this is */
+.hero-text .hero-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #C4B5FD;
+    margin-bottom: 1rem;
+    max-width: none;
+}
+
+/* Formerly h3/h4; kept as text so the page's heading outline stays h1 → h2 → h3 */
+.stat-value,
+.process-card-title {
+    display: block;
+    font-weight: 700;
+    color: var(--color-text-light);
+}
+
 .hero-text p {
     font-size: 1.25rem;
     color: var(--color-text-muted);
@@ -79,7 +98,7 @@
     /* Subtle purple glow */
 }
 
-.expert-text h3 {
+.expert-text .stat-value {
     font-size: 1.75rem !important;
     /* Scaled down */
     background: linear-gradient(135deg, #fff 0%, var(--color-primary) 100%);
@@ -125,7 +144,7 @@
     display: none;
 }
 
-.stat-item h3 {
+.stat-item .stat-value {
     font-size: 2rem;
     /* Scaled down from 2.5rem */
     font-weight: 700;
@@ -158,7 +177,7 @@
     transform: translateY(-4px);
 }
 
-.stealth-link:hover h3 {
+.stealth-link:hover .stat-value {
     color: var(--color-primary);
 }
 
@@ -301,7 +320,7 @@
     font-weight: 700;
 }
 
-.process-card h4 {
+.process-card .process-card-title {
     font-size: 1.5rem;
     /* Adjusted for landscape header balance */
     margin-bottom: 0.75rem;
@@ -373,7 +392,7 @@
         min-width: 130px;
     }
 
-    .stat-item h3 {
+    .stat-item .stat-value {
         font-size: 1.7rem;
     }
 
@@ -476,7 +495,7 @@
         padding: 0.95rem 0.65rem;
     }
 
-    .stat-item h3 {
+    .stat-item .stat-value {
         font-size: 1.45rem;
         justify-content: center;
         margin-top: 0;
@@ -512,7 +531,7 @@
         gap: 0.2rem;
     }
 
-    .expert-text h3 {
+    .expert-text .stat-value {
         font-size: 1.2rem !important;
     }
 

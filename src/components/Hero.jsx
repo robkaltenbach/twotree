@@ -89,6 +89,7 @@ const Hero = () => {
         <section className="hero">
             <div className="container hero-content">
                 <div className={`hero-text fade-in-section ${isLoaded ? 'is-visible' : ''}`}>
+                    <p className="hero-eyebrow">Robert Kaltenbach · Full-stack engineer · Chicago</p>
                     <h1>Redesigning how work gets done using AI</h1>
                     <p>
                         From internal tools to customer-facing systems, the focus is AI-first solutions that reduce manual work and improve consistency.
@@ -110,21 +111,21 @@ const Hero = () => {
                         <div className="hero-stats">
                             <div className="stat-item">
                                 <div className="stat-item-inner">
-                                    <h3>Top 1%</h3>
+                                    <span className="stat-value">Top 1%</span>
                                     <p>Creator</p>
                                 </div>
                             </div>
                             <div className="stat-item">
                                 <div className="stat-item-inner">
-                                    <h3 className="flex items-center gap-xs">
+                                    <span className="stat-value flex items-center gap-xs">
                                         5.0 <Star size={24} fill="currentColor" className="text-primary" />
-                                    </h3>
+                                    </span>
                                     <p>Satisfaction</p>
                                 </div>
                             </div>
                             <div className="stat-item">
                                 <div className="stat-item-inner">
-                                    <h3>10+</h3>
+                                    <span className="stat-value">10+</span>
                                     <p>Years Experience</p>
                                 </div>
                             </div>
@@ -133,7 +134,7 @@ const Hero = () => {
                                     <div className="expert-badge-minimal">
                                         <img src="/anything-logo.png" alt="Anything" className="expert-logo-small" />
                                         <div className="expert-text">
-                                            <h3>Anything</h3>
+                                            <span className="stat-value">Anything</span>
                                             <p>Expert</p>
                                         </div>
                                     </div>
@@ -168,7 +169,7 @@ const Hero = () => {
                                         <div className="process-icon">{step.icon}</div>
                                     </div>
                                     <div className="process-step-label">{step.step}</div>
-                                    <h4>{step.title}</h4>
+                                    <span className="process-card-title">{step.title}</span>
                                     <p>{step.description}</p>
 
                                     {/* Glare effect */}
