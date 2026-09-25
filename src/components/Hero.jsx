@@ -40,12 +40,16 @@ const Hero = () => {
     const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
 
     useEffect(() => {
-        setIsLoaded(true);
+        // Deferred a frame so the prerendered markup hydrates before the fade-in starts.
+        const frame = requestAnimationFrame(() => setIsLoaded(true));
         const interval = setInterval(() => {
             setActiveStep((prev) => (prev + 1) % processSteps.length);
         }, 4000);
 
-        return () => clearInterval(interval);
+        return () => {
+            cancelAnimationFrame(frame);
+            clearInterval(interval);
+        };
     }, []);
 
     const handleMouseMove = (e) => {
@@ -93,12 +97,8 @@ const Hero = () => {
                     </p>
 
                     <div className="hero-cta-group">
-                        <a href="#contact" style={{ textDecoration: 'none' }}>
-                            <Button variant="primary">Get in touch</Button>
-                        </a>
-                        <a href="#projects" style={{ textDecoration: 'none' }}>
-                            <Button variant="outline">See selected work</Button>
-                        </a>
+                        <Button variant="primary" href="#contact">Get in touch</Button>
+                        <Button variant="outline" href="#projects">See selected work</Button>
                     </div>
 
                     <a

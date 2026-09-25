@@ -1,0 +1,6 @@
+# Search engines and AI assistants are welcome.
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://www.twotree.dev/sitemap.xml

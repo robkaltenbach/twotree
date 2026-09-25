@@ -139,3 +139,21 @@ button:focus-visible {
 .stagger-3 {
   transition-delay: 300ms;
 }
+/* Respect the OS "reduce motion" setting: show content without fades or movement. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-in-section,
+  .bio-text,
+  .bio-image-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
