@@ -10,8 +10,19 @@
     font-size: 1rem;
 }
 
+a.btn {
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
 .btn-primary {
     background-color: var(--color-primary);
+    color: #fff;
+}
+
+/* Primary links: global `a:hover { color: accent }` must not override button text */
+a.btn-primary:hover,
+a.btn-primary:focus-visible {
     color: #fff;
 }
 
@@ -19,6 +30,18 @@
     background-color: var(--color-primary-hover);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* Match focus treatment across primary controls (override index.css webkit ring) */
+.btn:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 3px rgba(124, 58, 237, 0.45),
+        0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+.btn:focus:not(:focus-visible) {
+    outline: none;
 }
 
 .btn-outline {

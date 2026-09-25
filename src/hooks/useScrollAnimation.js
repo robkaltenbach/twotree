@@ -1,34 +1,38 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useScrollAnimation = (threshold = 0.15) => {
+/**
+ * When `ref` is on a tall section, IntersectionObserver threshold values like 0.2
+ * mean "20% of the *entire* target height must be visible" — on small viewports that
+ * ratio may never be reached, so the section stays invisible forever.
+ * Use threshold 0 so the first pixel entering the viewport is enough.
+ */
+const useScrollAnimation = () => {
     const ref = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        const node = ref.current;
+        if (!node) return undefined;
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setIsVisible(true);
-                    // Once visible, we can stop observing to keep it visible (no "exit" animation needed)
                     observer.unobserve(entry.target);
                 }
             },
             {
-                threshold: threshold,
-                rootMargin: '0px 0px -10% 0px' // Wait until the element is 10% inside the viewport
+                threshold: 0,
+                rootMargin: '0px 0px 0px 0px',
             }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
+        observer.observe(node);
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
-            }
+            observer.unobserve(node);
         };
-    }, [threshold]);
+    }, []);
 
     return { ref, isVisible };
 };

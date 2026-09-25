@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         }
 
         const { data, error } = await resend.emails.send({
-            from: 'Two Tree Portfolio <onboarding@resend.dev>',
+            from: 'Two Tree <inquiry@about.twotree.dev>',
             to: 'hello@twotree.dev',
             subject: `New Project Inquiry from ${name}`,
             reply_to: email,

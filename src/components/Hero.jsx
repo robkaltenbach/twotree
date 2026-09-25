@@ -8,25 +8,25 @@ const processSteps = [
         icon: <Lightbulb size={32} />,
         step: 'Step 1',
         title: 'Discover',
-        description: 'We dive deep to understand your goals, audience, and unique technical requirements.'
+        description: 'Goals, constraints, and what “done” looks like — for users and for the business — get clear first.'
     },
     {
         icon: <MousePointer2 size={32} />,
         step: 'Step 2',
         title: 'Design',
-        description: 'Crafting intuitive prototypes and high-fidelity visuals that perfectly align with your brand.'
+        description: 'Flows and visuals are shaped to be straightforward to build and solid to use in the real world.'
     },
     {
         icon: <Code2 size={32} />,
         step: 'Step 3',
         title: 'Develop',
-        description: 'Writing clean, scalable code using the latest technologies and industry best practices.'
+        description: 'Shipping means maintainable code and modern tooling — AI where it earns its place, humans where judgment matters.'
     },
     {
         icon: <Rocket size={32} />,
         step: 'Step 4',
         title: 'Launch',
-        description: 'Deploying your product with thorough testing and comprehensive ongoing support strategies.'
+        description: 'Launch includes testing and handoff you can rely on, with support available for what comes next.'
     }
 ];
 
@@ -85,15 +85,19 @@ const Hero = () => {
         <section className="hero">
             <div className="container hero-content">
                 <div className={`hero-text fade-in-section ${isLoaded ? 'is-visible' : ''}`}>
-                    <h1>Builds, repairs, and rescue work for modern apps.</h1>
-                    <p>Senior development for products that need to ship.</p>
+                    <h1>Redesigning how work gets done using AI</h1>
+                    <p>
+                        From internal tools to customer-facing systems, the focus is AI-first solutions that reduce manual work and improve consistency.
+                        <br />
+                        <strong>Available for freelance</strong> and <strong>open to work</strong>
+                    </p>
 
-                    <div className="flex gap-sm">
+                    <div className="hero-cta-group">
                         <a href="#contact" style={{ textDecoration: 'none' }}>
-                            <Button variant="primary">Start a Project</Button>
+                            <Button variant="primary">Get in touch</Button>
                         </a>
                         <a href="#projects" style={{ textDecoration: 'none' }}>
-                            <Button variant="outline">View Our Work</Button>
+                            <Button variant="outline">See selected work</Button>
                         </a>
                     </div>
 
@@ -105,25 +109,33 @@ const Hero = () => {
                     >
                         <div className="hero-stats">
                             <div className="stat-item">
-                                <h3>Top 5%</h3>
-                                <p>Creator</p>
+                                <div className="stat-item-inner">
+                                    <h3>Top 1%</h3>
+                                    <p>Creator</p>
+                                </div>
                             </div>
                             <div className="stat-item">
-                                <h3 className="flex items-center gap-xs">
-                                    5.0 <Star size={24} fill="currentColor" className="text-primary" />
-                                </h3>
-                                <p>Satisfaction</p>
+                                <div className="stat-item-inner">
+                                    <h3 className="flex items-center gap-xs">
+                                        5.0 <Star size={24} fill="currentColor" className="text-primary" />
+                                    </h3>
+                                    <p>Satisfaction</p>
+                                </div>
                             </div>
                             <div className="stat-item">
-                                <h3>10+</h3>
-                                <p>Years Experience</p>
+                                <div className="stat-item-inner">
+                                    <h3>10+</h3>
+                                    <p>Years Experience</p>
+                                </div>
                             </div>
                             <div className="stat-item expert-stat">
-                                <div className="expert-badge-minimal">
-                                    <img src="/anything-logo.png" alt="Anything" className="expert-logo-small" />
-                                    <div className="expert-text">
-                                        <h3>Anything</h3>
-                                        <p>Expert</p>
+                                <div className="stat-item-inner">
+                                    <div className="expert-badge-minimal">
+                                        <img src="/anything-logo.png" alt="Anything" className="expert-logo-small" />
+                                        <div className="expert-text">
+                                            <h3>Anything</h3>
+                                            <p>Expert</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
