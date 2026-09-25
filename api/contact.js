@@ -2,6 +2,9 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Where inquiries are delivered. Set CONTACT_TO_EMAIL in Vercel to change it without a deploy.
+const CONTACT_TO = process.env.CONTACT_TO_EMAIL || 'hello@twotree.dev';
+
 const MAX_LENGTH = { name: 200, email: 320, budget: 200, message: 5000 };
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -41,7 +44,7 @@ export default async function handler(req, res) {
 
         const { data, error } = await resend.emails.send({
             from: 'Two Tree <inquiry@about.twotree.dev>',
-            to: 'hello@twotree.dev',
+            to: CONTACT_TO,
             subject: `New Project Inquiry from ${name.replace(/[\r\n]+/g, ' ')}`,
             replyTo: email,
             text: `Name: ${name}\nEmail: ${email}\nBudget: ${budget || 'Not specified'}\n\n${message}`,
