@@ -1,5 +1,6 @@
 import React from 'react';
 import { projectsData } from '../data/projects';
+import { faqData } from '../data/faq';
 
 const SITE_URL = 'https://www.twotree.dev';
 
@@ -90,6 +91,15 @@ const structuredData = {
                     url: project.projectUrl,
                     creator: { '@id': `${SITE_URL}/#person` },
                 },
+            })),
+        },
+        {
+            '@type': 'FAQPage',
+            '@id': `${SITE_URL}/#faq`,
+            mainEntity: faqData.map((item) => ({
+                '@type': 'Question',
+                name: item.question,
+                acceptedAnswer: { '@type': 'Answer', text: item.answer },
             })),
         },
     ],
